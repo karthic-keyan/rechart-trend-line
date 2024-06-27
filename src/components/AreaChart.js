@@ -1,58 +1,34 @@
 import React from "react";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Label,
-  Customized,
-  Text,
-} from "recharts";
+import { AreaChart, Area, Tooltip, Customized, XAxis } from "recharts";
 
 const data = [
   {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    month: "Jan",
+    percentage: 40,
   },
   {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    month: "Feb",
+    percentage: 50,
   },
   {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    month: "Mar",
+    percentage: 60,
   },
   {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
+    month: "Apr",
+    percentage: 70,
   },
   {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
+    month: "May",
+    percentage: 20,
   },
   {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
+    month: "June",
+    percentage: 35,
   },
   {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
+    month: "July",
+    percentage: 40,
   },
 ];
 
@@ -78,10 +54,6 @@ export default function AreaGraph() {
   };
 
   const CustomLabel = ({ x, y, value }) => {
-    console.log("x, y, value", x, y, value);
-    const textWidth = `${value}%`.length * 10; // approximate width based on character length
-    const textHeight = 20; // approximate height of the text
-    const padding = 5; // padding around the text
     return (
       <g>
         <rect
@@ -113,23 +85,9 @@ export default function AreaGraph() {
   };
 
   const CustomizedComponent = (props) => {
-    console.log("props", props);
     return <CustomLabel x={props.width} y={props.height} value="59" />;
   };
 
-  const CustomText = ({ x, y, value }) => (
-    <text
-      x={x}
-      y={y}
-      dy={-10}
-      fill="#FF0000"
-      fontSize={20}
-      fontWeight="bold"
-      textAnchor="middle"
-    >
-      {`${value}%`}
-    </text>
-  );
   return (
     <AreaChart
       width={600}
@@ -138,21 +96,19 @@ export default function AreaGraph() {
       margin={{
         top: 10,
         right: 30,
-        left: 0,
+        left: 20,
         bottom: 0,
       }}
     >
-      {/* <CartesianGrid /> */}
-      {/* <XAxis dataKey="name" /> */}
-      {/* <YAxis /> */}
       <Tooltip cursor={false} content={<CustomTooltip />} />
       <Area
         type="monotone"
-        dataKey="uv"
+        dataKey="percentage"
         stroke="#4DA853"
         strokeWidth={4}
         fill="#4DA853"
       ></Area>
+      <XAxis dataKey="month" />
       <Customized component={CustomizedComponent} />
     </AreaChart>
   );
