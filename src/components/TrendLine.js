@@ -8,8 +8,6 @@ import {
   Area,
   Tooltip,
 } from "recharts";
-import TrendLine from "./components/TrendLine";
-import AreaGraph from "./components/AreaChart";
 
 const data = [
   {
@@ -56,15 +54,25 @@ const data = [
   },
 ];
 
-export default function App() {
+export default function TrendLine() {
   return (
-    <div>
-      {/* <div className="flex m-2 border-2 border-black border-solid rounded">
-        <TrendLine />
-      </div> */}
-      <div className="flex m-2 border-2 border-black border-solid rounded">
-        <AreaGraph />
-      </div>
+    <div className="flex m-5">
+      <ResponsiveContainer width={500} height={100}>
+        <AreaChart
+          width={200}
+          height={60}
+          data={data}
+          margin={{
+            top: 5,
+            right: 0,
+            left: 0,
+            bottom: 5,
+          }}
+        >
+          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+        </AreaChart>
+        <Tooltip />
+      </ResponsiveContainer>
     </div>
   );
 }
