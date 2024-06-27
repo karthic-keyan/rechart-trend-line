@@ -1,36 +1,6 @@
 import React from "react";
 import { AreaChart, Area, Tooltip, Customized, XAxis } from "recharts";
-
-const data = [
-  {
-    month: "Jan",
-    percentage: 40,
-  },
-  {
-    month: "Feb",
-    percentage: 50,
-  },
-  {
-    month: "Mar",
-    percentage: 60,
-  },
-  {
-    month: "Apr",
-    percentage: 70,
-  },
-  {
-    month: "May",
-    percentage: 20,
-  },
-  {
-    month: "June",
-    percentage: 35,
-  },
-  {
-    month: "July",
-    percentage: 40,
-  },
-];
+import { data } from "./mockdata";
 
 export default function AreaGraph() {
   const CustomTooltip = ({ active, payload, label }) => {
@@ -106,7 +76,7 @@ export default function AreaGraph() {
         dataKey="percentage"
         stroke="#4DA853"
         strokeWidth={4}
-        fill="#4DA853"
+        fill="#90eeb0"
       ></Area>
       <XAxis dataKey="month" />
       <Customized component={CustomizedComponent} />
