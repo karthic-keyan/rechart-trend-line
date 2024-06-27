@@ -8,6 +8,7 @@ import {
   Tooltip,
   Label,
   Customized,
+  Text,
 } from "recharts";
 
 const data = [
@@ -78,25 +79,61 @@ export default function AreaGraph() {
 
   const CustomLabel = ({ x, y, value }) => {
     console.log("x, y, value", x, y, value);
+    const textWidth = `${value}%`.length * 10; // approximate width based on character length
+    const textHeight = 20; // approximate height of the text
+    const padding = 5; // padding around the text
     return (
-      <text
-        x={x}
-        y={y}
-        dy={-10}
-        fill="#FF0000"
-        fontSize={20}
-        fontWeight="bold"
-        textAnchor="middle"
-      >
-        {`${value}%`}
-      </text>
+      <g>
+        <rect
+          x={x / 2 - 55}
+          y={y / 2 - 50}
+          width={70}
+          height={40}
+          fill="white"
+          opacity={0.5}
+          stroke="none"
+          rx={5}
+          ry={5}
+        />
+        <text
+          className="w-5 h-5 bg-black"
+          x={x / 2}
+          y={y / 2}
+          dy={-20}
+          dx={-20}
+          fill="#4DA853"
+          fontSize={20}
+          fontWeight="bold"
+          textAnchor="middle"
+        >
+          {`${value}%`}
+        </text>
+      </g>
     );
   };
 
+  const CustomizedComponent = (props) => {
+    console.log("props", props);
+    return <CustomLabel x={props.width} y={props.height} value="59" />;
+  };
+
+  const CustomText = ({ x, y, value }) => (
+    <text
+      x={x}
+      y={y}
+      dy={-10}
+      fill="#FF0000"
+      fontSize={20}
+      fontWeight="bold"
+      textAnchor="middle"
+    >
+      {`${value}%`}
+    </text>
+  );
   return (
     <AreaChart
       width={600}
-      height={100}
+      height={200}
       data={data}
       margin={{
         top: 10,
@@ -115,21 +152,8 @@ export default function AreaGraph() {
         stroke="#4DA853"
         strokeWidth={4}
         fill="#4DA853"
-      >
-        <Customized
-          component={({ xAxisMap, yAxisMap, dataKey, points }) => {
-            console.log("points", points);
-            const point = points.find((p) => p.payload.name === "24-05-2024");
-            if (point) {
-              return (
-                <CustomLabel x={point.x} y={point.y} value={point.value} />
-              );
-            }
-            return null;
-          }}
-        />
-      </Area>
-      <Label value="Pages of my website" offset={0} position="insideBottom" />
+      ></Area>
+      <Customized component={CustomizedComponent} />
     </AreaChart>
   );
 }

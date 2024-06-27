@@ -7,9 +7,11 @@ import {
   AreaChart,
   Area,
   Tooltip,
+  Text,
 } from "recharts";
 import TrendLine from "./components/TrendLine";
 import AreaGraph from "./components/AreaChart";
+import AreaGraph2 from "./components/AreaChart2";
 
 const data = [
   {
@@ -63,6 +65,7 @@ export default function App() {
         <TrendLine />
       </div> */}
       <div className="flex m-2 border-2 border-black border-solid rounded">
+        {/* <AreaGraph /> */}
         <AreaGraph />
       </div>
     </div>
