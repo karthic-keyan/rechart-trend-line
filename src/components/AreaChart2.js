@@ -52,7 +52,7 @@ export default function AreaGraph2() {
         dataKey="percentage"
         stroke="#4DA853"
         strokeWidth={4}
-        fill="#90ee98"
+        fill="#90eeb0"
         filter="url(#shadow)"
       ></Area>
       {/* <XAxis dataKey="month" /> */}
